@@ -1,0 +1,82 @@
+    1  apt update -y
+    2  clear
+    3  ssh-keygen
+    4  clear
+    5  ls
+    6  cd .ssh
+    7  ls
+    8  apt install ansible -y
+    9  clear
+   10  cat id_rsa
+   11  clear
+   12  cat id_rsa.pub
+   13  cd
+   14  clear
+   15  ansible --version
+   16  cd /etc
+   17  mkdir ansible
+   18  cd ansible/
+   19  nano hosts
+   20  cd
+   21  ansible -m ping all
+   22  ansible -m ping workerhouse
+   23  clear
+   24  nano /etc/ansible/hosts
+   25  ansible -m ping all
+   26  clear
+   27  ansible -m ping all
+   28  cat .ssh/id_rsa.pub
+   29  ansible -m ping all
+   30  CLEAR
+   31  clear
+   32  ansible -m ping all
+   33  clear
+   34  ansible workerhouse -m shell -a "uptime"
+   35  nano /etc/ansible/hosts
+   36  ansible webservers -m shell -a "uptime"
+   37  clear
+   38  ls
+   39  mkdir app1
+   40  ls
+   41  cd app1
+   42  nano demofile.txt
+   43  cd
+   44  clear
+   45  ansible webservers -m copy -a "src=/root/app1/demofile.txt dest=/home/demofile.txt"
+   46  clear
+   47  ansible webservers -m file -a "dest=/home/test-123 state=directory"
+   48  clear
+   49  ansible node1 -m apt -a "name=apache2 state=present"
+
+   52  ansible node2 -m yum -a "name=httpd state=present"
+
+       ansible node2 -m service -a "name=httpd state=started"
+
+      or
+
+       ansible node2 -m service -a "name=httpd state=stopped"
+     or
+
+       ansible node2 -m yum -a "name=httpd state=absent"
+
+   55  clear
+
+   58   ansible node1 -m service -a "name=apache2 state=stopped"
+
+        ansible node1 -m apt -a "name=apache2 state=absent"
+
+
+  Creating custom inventory file
+
+   mkdir demo
+   cd demo
+   nano myhost
+	[webservers]
+	x.x.x.x
+
+	[appservers]
+        x.x.x.x
+
+  ansible -i /root/demo/myhost webservers -m ping
+
+ ansible -i /root/demo/myhost appservers -m ping

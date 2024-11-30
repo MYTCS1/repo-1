@@ -1,0 +1,45 @@
+
+
+   24  nano users.yml
+
+---
+- hosts: node1
+  tasks:
+    - name: Adding Users
+      user:
+        comment: shashi
+        createhome: true
+        name: shashi
+        password: shashi@123
+        shell: /bin/bash
+    - copy:
+        content: |
+          Its a Confidential Agreement between an Employee & Employer
+        dest: /home/shashi/Agreement
+      name: Copying Confidential Agrement
+
+
+
+   25  ls
+   26  cat users.yml
+   27  ansible-vault encrypt users.yml
+   28  cat users.yml
+   29  nano users.yml
+   30  clear
+   31  ls
+   32  ansible-vault view users.yml
+   33  ansible-vault edit users.yml
+   34  clear
+   35  ansible-vault rekey users.yml
+   36  ansible-vault view users.yml
+   37  clear
+   38  cd /home/ubuntu/
+   39  nano mypassword
+   40  cd
+   41  ls
+   42  cd demo1
+   43  ansible-playbook users.yml  --vault-password-file  /home/ubuntu/mypassword
+   44  clear
+   45  cat users.yml
+   46  ansible-vault decrypt users.yml
+   47  cat users.yml
